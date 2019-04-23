@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mogao.mapper.UserCourseMapper">
+  <resultMap id="BaseResultMap" type="cn.mogao.pojo.UserCourse">
+    <id column="ucid" jdbcType="INTEGER" property="ucid" />
+    <result column="cid" jdbcType="INTEGER" property="cid" />
+    <result column="ucstatu" jdbcType="INTEGER" property="ucstatu" />
+    <result column="SCHEDULE" jdbcType="VARCHAR" property="schedule" />
+    <result column="ucscore" jdbcType="INTEGER" property="ucscore" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ucid, cid, ucstatu, SCHEDULE, ucscore, uid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_course
+    where ucid = #{ucid,jdbcType=INTEGER}
+  </select>
+
+  <select id="findUCByUidAndCid"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_course
+    where uid = #{uid,jdbcType=INTEGER}
+    and cid=#{cid,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByUid"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_course
+    where uid = #{uid,jdbcType=INTEGER}
+
+  </select>
+
+  <select id="findAll"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_course
+
+
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_course
+    where ucid = #{ucid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.mogao.pojo.UserCourse">
+    insert into user_course (ucid, cid, ucstatu, 
+      SCHEDULE, ucscore, uid
+      )
+    values (#{ucid,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, #{ucstatu,jdbcType=INTEGER}, 
+      #{schedule,jdbcType=VARCHAR}, #{ucscore,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.mogao.pojo.UserCourse">
+    insert into user_course
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ucid != null">
+        ucid,
+      </if>
+      <if test="cid != null">
+        cid,
+      </if>
+      <if test="ucstatu != null">
+        ucstatu,
+      </if>
+      <if test="schedule != null">
+        SCHEDULE,
+      </if>
+      <if test="ucscore != null">
+        ucscore,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ucid != null">
+        #{ucid,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null">
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="ucstatu != null">
+        #{ucstatu,jdbcType=INTEGER},
+      </if>
+      <if test="schedule != null">
+        #{schedule,jdbcType=VARCHAR},
+      </if>
+      <if test="ucscore != null">
+        #{ucscore,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.mogao.pojo.UserCourse">
+    update user_course
+    <set>
+      <if test="cid != null">
+        cid = #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="ucstatu != null">
+        ucstatu = #{ucstatu,jdbcType=INTEGER},
+      </if>
+      <if test="schedule != null">
+        SCHEDULE = #{schedule,jdbcType=VARCHAR},
+      </if>
+      <if test="ucscore != null">
+        ucscore = #{ucscore,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ucid = #{ucid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.mogao.pojo.UserCourse">
+    update user_course
+    set cid = #{cid,jdbcType=INTEGER},
+      ucstatu = #{ucstatu,jdbcType=INTEGER},
+      SCHEDULE = #{schedule,jdbcType=VARCHAR},
+      ucscore = #{ucscore,jdbcType=INTEGER},
+      uid = #{uid,jdbcType=INTEGER}
+    where ucid = #{ucid,jdbcType=INTEGER}
+  </update>
+</mapper>

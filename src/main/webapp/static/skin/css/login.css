@@ -1,0 +1,25 @@
+/* 登录界面  */
+body {background-color: #1370A6; background-size: 100% auto; background-repeat: no-repeat; padding: 45px 0 0; overflow:auto; font-size: 14px; font-family: 'Microsoft Yahei', Tahoma, Arial;}
+.theme {overflow: hidden;position: absolute;z-index: 5;width: 100%;height: 100%;left: 0;top: 0;}
+.theme img {position: absolute;min-width: 1600px;}
+.header{ height: 45px; line-height: 45px; position: fixed; z-index: 1000; width:100%; left: 0; filter:alpha(opacity=70); -moz-opacity:0.7; -khtml-opacity: 0.7;opacity: 0.7; margin-top: 0;border: 0; }
+.header, .header a {color:#fff; font-size: 12px;}
+.header a {margin-left: 15px;}
+.header {background-color: #1f4d66; top: 0; }
+.footer  { padding: 20px;}
+.footer p {text-align: center;color: #FFF; text-shadow: 1px 1px 1px #000;}
+h1 { color: #FFF; text-shadow: 1px 0px 1px #000; text-align: center; margin: 40px 0;}
+.login-box {
+	width: 500px;
+	background-color: #FFF;
+	padding: 40px 40px 20px 20px;
+	border-radius: 5px;
+	margin: 0 auto;
+}
+.login-box .control-label,label {}
+
+@media (max-width: 767px) {
+	body { padding: 0; }
+	.header { position: static; display: none;}
+	.login-box { width: 100%; padding: 20px 20px 5px;}
+}

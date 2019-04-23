@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mogao.mapper.CoursewareMapper">
+  <resultMap id="BaseResultMap" type="cn.mogao.pojo.Courseware">
+    <id column="cwid" jdbcType="INTEGER" property="cwid" />
+    <result column="cw_path" jdbcType="VARCHAR" property="cwPath" />
+    <result column="cid" jdbcType="INTEGER" property="cid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    cwid, cw_path, cid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from courseware
+    where cwid = #{cwid,jdbcType=INTEGER}
+  </select>
+
+
+
+
+
+  <select id="selectByCid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from courseware
+    where cid = #{cid,jdbcType=INTEGER}
+  </select>
+
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from courseware
+    where cwid = #{cwid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.mogao.pojo.Courseware">
+    insert into courseware (cwid, cw_path, cid
+      )
+    values (#{cwid,jdbcType=INTEGER}, #{cwPath,jdbcType=VARCHAR}, #{cid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.mogao.pojo.Courseware">
+    insert into courseware
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cwid != null">
+        cwid,
+      </if>
+      <if test="cwPath != null">
+        cw_path,
+      </if>
+      <if test="cid != null">
+        cid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cwid != null">
+        #{cwid,jdbcType=INTEGER},
+      </if>
+      <if test="cwPath != null">
+        #{cwPath,jdbcType=VARCHAR},
+      </if>
+      <if test="cid != null">
+        #{cid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.mogao.pojo.Courseware">
+    update courseware
+    <set>
+      <if test="cwPath != null">
+        cw_path = #{cwPath,jdbcType=VARCHAR},
+      </if>
+      <if test="cid != null">
+        cid = #{cid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where cwid = #{cwid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.mogao.pojo.Courseware">
+    update courseware
+    set cw_path = #{cwPath,jdbcType=VARCHAR},
+      cid = #{cid,jdbcType=INTEGER}
+    where cwid = #{cwid,jdbcType=INTEGER}
+  </update>
+</mapper>
